@@ -22,6 +22,9 @@
     "*.{vue,js,ts}": "npm run lint:fix",
     "*.{vue,less}": "npm run stylelint:fix"
   },
+  "scripts": {
+    "dev": "vite --config vite/vite.config.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/helper-plugin-utils": "^7.20.2",
@@ -34,6 +37,7 @@
     "@babel/runtime-corejs3": "^7.20.1",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@vitejs/plugin-vue": "^4.0.0",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "@vue/compiler-sfc": "^3.2.41",
     "@webpack-cli/serve": "^1.7.0",
@@ -72,6 +76,8 @@
     "stylelint-order": "^4.1.0",
     "thread-loader": "^3.0.4",
     "url-loader": "^4.1.1",
+    "vite": "^4.0.3",
+    "vite-plugin-html": "^3.2.0",
     "vue-eslint-parser": "^8.3.0",
     "vue-loader": "^16.8.3",
     "vue-style-loader": "^4.1.3",

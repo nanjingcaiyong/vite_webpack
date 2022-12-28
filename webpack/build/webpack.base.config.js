@@ -2,7 +2,7 @@ import { VueLoaderPlugin } from 'vue-loader';
 import * as webpack from 'webpack';
 import fs from 'fs';
 import config from '../config';
-import routers from '../src/router';
+import routers from '../../src/router';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackBar from 'webpackbar';
 import path from 'path';

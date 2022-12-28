@@ -17,3 +17,8 @@ npm run build:[env]
 npm run build --report
 ```
 
+
+vite 访问 http://127.0.0.1:5173/language/
+webpack 访问 http://localhost:8080/language
+
+
