@@ -1,43 +1,22 @@
 {
   "scripts": {
-    "dev": [
+    "dev:vite": [
+      "npx",
+      "vite",
+      "-c",
+      "vite/vite.config.js",
+      "--mode",
+      ["请选择环境", ["dev", "sit", "pre", "prd"]]
+    ],
+    "dev:webpack": [
       "node",
       "webpack/build/dev.server.js",
       ["请选择环境", ["dev", "sit", "pre", "prd"]]
     ],
-    "build": [
+    "build:webpack": [
       "node",
-      "/webpack/build/build.js",
+      "webpack/build/build.js",
       ["请选择环境", ["dev", "sit", "pre", "prd"]]
-    ],
-    "lint:es": [
-      "eslint",
-      "--ext",
-      ".js,.vue,.ts",
-      "src"
-    ],
-    "lint:style": [
-       "stylelint",
-       "'src/**/*.{vue,less}'"
-    ],
-    "fix:es": [
-      "eslint",
-      "--fix",
-      "--ext",
-      ".js,.vue,.ts",
-      "src"
-    ],
-    "fix:style": [
-      "stylelint",
-      "'src/**/*.{vue,less}'",
-      " --fix"
-    ],
-    "prepare": [
-      "husky",
-      "install"
-    ],
-    "release": [
-      "standard-version"
     ]
   }
 }

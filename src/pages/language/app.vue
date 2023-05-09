@@ -20,6 +20,7 @@ import { useI18n } from 'vue-i18n';
 import { defineComponent } from 'vue';
 export default defineComponent({
   setup () {
+    alert(process.env.APP_ENV)
     const { locale } = useI18n();
     const setLangCodition = (val) => {
       locale.value = val;
