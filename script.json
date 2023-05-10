@@ -8,15 +8,66 @@
       "--mode",
       ["请选择环境", ["dev", "sit", "pre", "prd"]]
     ],
+    "build:vite:dev": [
+      "npx",
+      "vite",
+      "build",
+      "-c",
+      "./vite/vite.config.js",
+      "--mode",
+      "dev"
+    ],
+    "build:vite:sit": [
+      "npx",
+      "vite",
+      "build",
+      "-c",
+      "./vite/vite.config.js",
+      "--mode",
+      "sit"
+    ],
+    "build:vite:pre": [
+      "npx",
+      "vite",
+      "build",
+      "-c",
+      "./vite/vite.config.js",
+      "--mode",
+      "pre"
+    ],
+    "build:vite:prd": [
+      "npx",
+      "vite",
+      "build",
+      "-c",
+      "./vite/vite.config.js",
+      "--mode",
+      "prd"
+    ],
     "dev:webpack": [
       "node",
       "webpack/build/dev.server.js",
       ["请选择环境", ["dev", "sit", "pre", "prd"]]
     ],
-    "build:webpack": [
+    "build:webpack:dev": [
       "node",
       "webpack/build/build.js",
-      ["请选择环境", ["dev", "sit", "pre", "prd"]]
+      "dev"
+    ],
+    "build:webpack:sit": [
+      "node",
+      "webpack/build/build.js",
+      "sit"
+    ],
+    "build:webpack:pre": [
+      "node",
+      "webpack/build/build.js",
+      "pre"
+    ],
+    "build:webpack:prd": [
+      "node",
+      "webpack/build/build.js",
+      "prd"
     ]
   }
 }

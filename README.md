@@ -1,24 +1,38 @@
-## npm i
+## 开始
 
-## 命令
-- 项目启动
+### 安装依赖
 ```sh
-npm run dev
+pnpm i
 ```
 
-- 项目打包
+### 项目启动
 ```sh
-npm run build:[env]
+# vite 启动项目
+npx rich run dev:vite
+# webpack 启动项目
+npx rich run dev:webpack
 ```
 
-- 打包依赖报告
-
+### 项目打包
+vite打包
 ```sh
-npm run build --report
+# 测试环境
+npx rich run build:vite:sit
+# 验收环境
+npx rich run build:vite:pre
+# 生产环境
+npx rich run build:vite:prd
 ```
 
+webpack打包
+```sh
+# 测试环境
+npx rich run build:webpack:sit
+# 验收环境
+npx rich run build:webpack:pre
+# 生产环境
+npx rich run build:webpack:prd
+```
 
-vite 访问 http://127.0.0.1:5173/language/
-webpack 访问 http://localhost:8080/language
-
-
+### 地址访问
+http://localhost:8080/language/
