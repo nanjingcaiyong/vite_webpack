@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { readdirSync } from "fs";
-
+import legacy from '@vitejs/plugin-legacy';
 import viteCompression from "vite-plugin-compression";
 
 const rootPath = process.cwd();
@@ -9,8 +9,8 @@ const srcPath = process.cwd() + '/src'
 const entryPath = srcPath + "/pages";
 
 const entrys = readdirSync(entryPath).reduce((obj, moduleName) =>
- Object.assign(obj, {[moduleName]: entryPath + `/${moduleName}/index.html`}),
- {}
+  Object.assign(obj, {[moduleName]: entryPath + `/${moduleName}/index.html`}),
+  {}
 );
 
 export default defineConfig(({ mode }) => {
@@ -28,7 +28,15 @@ export default defineConfig(({ mode }) => {
         algorithm: "gzip",
         ext: ".gz",
       }),
+      legacy({
+        targets: ['defaults']
+      }),
     ],
+    experimental: {
+      renderBuiltUrl () {
+        return { relative: true }
+      }
+    },
     resolve: {
       extensions: [".js", ".ts", ".vue", ".json"],
       alias: {
@@ -44,11 +52,15 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         input: entrys,
-        output: { dir: rootPath + "/dist" },
-      }
+        output: {
+          entryFileNames: 'main.js'
+        }
+      },
+      outDir: rootPath + "/dist",
+      emptyOutDir: true             // 构建前删除dist文件夹
     },
     define: {
-      'process.env': env,
+      'process.env': env
     }
   };
 });
