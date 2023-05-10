@@ -10,7 +10,7 @@ const entryPath = srcPath + "/pages";
 
 const entrys = readdirSync(entryPath).reduce((obj, moduleName) => Object.assign(obj, {[moduleName]: entryPath + `/${moduleName}/index.html`}), {})
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀。
   const env = loadEnv(mode, rootPath + '/vite/config', '');
   return {
@@ -21,9 +21,13 @@ export default defineConfig(({ mode }) => {
         enforce: 'pre',
         transformIndexHtml (html, ctx) {
           const pageName = /(?<=\/)([a-zA-Z]*)(?=\/)/.exec(ctx.path)[0]
-          return html
+          console.log(html)
+          html = html
             .replace(/__TITTLE__/g, pageName)
             .replace(/__APP__/g, pageName)
+            .replace(/__MODULE__/g, `./${pageName}.js`)
+          console.log(html)
+          return html
         }
       },
       vue(),
@@ -68,6 +72,9 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       'process.env': env
-    }
+    },
+    optimizeDeps: {
+      exclude: ['__MODULE__', '__APP__', '__TITTLE__'] // 排除 __MAIN__
+    },
   };
 });
