@@ -8,10 +8,19 @@ const rootPath = process.cwd();
 const srcPath = process.cwd() + '/src'
 const entryPath = srcPath + "/pages";
 
-const entrys = readdirSync(entryPath).reduce((obj, moduleName) =>
-  Object.assign(obj, {[moduleName]: entryPath + `/${moduleName}/index.html`}),
+const entrys = readdirSync(entryPath).reduce((obj, moduleName) => {
+  return Object.assign(obj, {[moduleName]: entryPath + `/${moduleName}/index.html`}),
   {}
-);
+});
+
+const transformIndexHtml = (html) => {
+  switch (process.env.NODE_ENV) {
+    case 'production':
+      return html.replace(/__MAIN__/, './main.js')   // 生产环境
+    default:
+      return html.replace(/__MAIN__/, './main.js')    // 开发环境
+  }
+}
 
 export default defineConfig(({ mode }) => {
   // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀。
@@ -19,6 +28,16 @@ export default defineConfig(({ mode }) => {
   return {
     root: './src/pages/',
     plugins: [
+      {
+        name: 'demo-transform',
+        enforce: 'pre',
+        transformIndexHtml (html, ctx) {
+          const pageName = ctx.originalUrl.replace(/\//g, '')
+          return html
+            .replace('__TITTLE__', pageName)
+            .replace('__APP__', `<div id="${pageName}"></div><script type="module" src="./${pageName}.js"></script>`)
+        }
+      },
       vue(),
       // gzip压缩 生产环境生成 .gz 文件
       viteCompression({
@@ -53,7 +72,7 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: entrys,
         output: {
-          entryFileNames: 'main.js'
+          entryFileNames: '[name].js'
         }
       },
       outDir: rootPath + "/dist",

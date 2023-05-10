@@ -22,7 +22,7 @@ export default defineComponent({
   setup () {
     const { locale } = useI18n();
     const setLangCodition = (val) => {
-      locale.value = val ?? 'gbsssa1111s';
+      locale.value = val;
       localStorage.setItem('language', locale.value);
     };
     return {
