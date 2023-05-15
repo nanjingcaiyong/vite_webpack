@@ -12,8 +12,6 @@ const routers = fs.readdirSync(process.cwd() + '/src/pages/').reduce((arr, modul
   title: '多语言'
 }), [])
 
-
-const { ModuleFederationPlugin } = webpack.container;
 import loaders from './vue-loader.config';
 const moduleName = process.argv[3]; // 获取脚本参数
 
@@ -128,15 +126,7 @@ const baseConfig = {
       'process.env': JSON.stringify(config.build.env)
     }),
     new webpack.ProvidePlugin({
-      $API: [path.resolve(__dirname, '../src/apis'), 'default'],
-    }),
-    new ModuleFederationPlugin({
-      name: 'shopifyApp',
-      filename: 'shopifyUI.js',
-      remotes: {
-        importShopifyUI: 'shopifyUI@http://localhost:8081/shopifyUI.js',
-      },
-      exposes: {},
+      $API: [process.cwd() + '/src/apis', 'default'],
     }),
   ]
 };

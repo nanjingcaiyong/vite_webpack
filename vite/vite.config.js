@@ -48,6 +48,7 @@ export default defineConfig(({ mode, command }) => {
     esbuild: {
       jsxFactory: 'h',
       jsxFragment: 'Fragment',
+      jsxInject: `import $API from '@/apis'`
     }
   };
 });

@@ -1,6 +1,8 @@
 import legacy from '@vitejs/plugin-legacy';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vue from "@vitejs/plugin-vue";
+import inject from '@rollup/plugin-inject';
+import path from 'path'
 const config = {
   build: {
     plugins: [
@@ -19,6 +21,9 @@ const config = {
       vueJsx({}),
       legacy({
         targets: ['defaults']
+      }),
+      inject({
+        $API: path.resolve(__dirname, '../../src/apis/index.js')
       })
     ]
   },
@@ -36,7 +41,10 @@ const config = {
         }
       },
       vue(),
-      vueJsx({})
+      vueJsx({}),
+      inject({
+        $API: path.resolve(__dirname, '../../src/apis/index.js')
+      })
     ]
   }
 };

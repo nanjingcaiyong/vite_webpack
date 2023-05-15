@@ -8,6 +8,7 @@ import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
+  devtool: 'nosources-source-map', // 报错提示模块和行号
   optimization: {
     splitChunks: {
       /** 
