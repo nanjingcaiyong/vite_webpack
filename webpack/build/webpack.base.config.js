@@ -2,10 +2,16 @@ import { VueLoaderPlugin } from 'vue-loader';
 import * as webpack from 'webpack';
 import fs from 'fs';
 import config from '../config';
-import routers from '../../src/router';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackBar from 'webpackbar';
 import path from 'path';
+
+const routers = fs.readdirSync(process.cwd() + '/src/pages/').reduce((arr, moduleName) => arr.concat({
+  name: moduleName,
+  path: moduleName,
+  title: '多语言'
+}), [])
+
 
 const { ModuleFederationPlugin } = webpack.container;
 import loaders from './vue-loader.config';

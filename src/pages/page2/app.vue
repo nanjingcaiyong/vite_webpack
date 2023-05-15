@@ -1,3 +1,11 @@
 <template>
-   PAGE 2
-</template>
+   <div>
+      <h1>PAGE 2</h1>
+   </div>
+</template> 
+
+<style scoped>
+h1 {
+   color: red
+}
+</style>

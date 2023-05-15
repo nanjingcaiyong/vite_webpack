@@ -1,5 +1,6 @@
 <template>
-  {{ $t('message') }} 
+  {{ $t('message') }}
+  <hello-world></hello-world>
   <div class="flex">
     <button @click="setLangCodition('zhCN')">
       切换中文
@@ -18,7 +19,11 @@
 <script>
 import { useI18n } from 'vue-i18n';
 import { defineComponent } from 'vue';
+import HelloWorld from './components/HelloWorld.jsx'
 export default defineComponent({
+  components: {
+    HelloWorld
+  },
   setup () {
     const { locale } = useI18n();
     const setLangCodition = (val) => {
